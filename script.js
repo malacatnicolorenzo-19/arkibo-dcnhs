@@ -1,3 +1,8 @@
+// REGISTER SERVICE WORKER
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+}
+
 // NAVIGATION
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
