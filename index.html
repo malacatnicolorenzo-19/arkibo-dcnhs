@@ -117,49 +117,50 @@
   </div>
 
   <!-- STUDY SCHEDULER / REMINDERS PAGE -->
-<section id="schedPage" class="page">
-  <h2>📘 Study Scheduler & Reminders</h2>
-  <p>Create your own reminders or study schedules below. They’ll stay saved even after you close Arkibo!</p>
+  <section id="schedPage" class="page hidden">
+    <h2>📘 Study Scheduler & Reminders</h2>
+    <p>Create your own reminders or study schedules below. They’ll stay saved even after you close Arkibo!</p>
 
-  <div class="sched-container">
-    <div class="sched-box">
-      <h3>Create Reminder</h3>
-      <input type="text" id="reminderName" placeholder="Reminder name">
-      <input type="datetime-local" id="reminderDate">
-      <button onclick="addReminder()">Add Reminder</button>
+    <div class="sched-container">
+      <div class="sched-box">
+        <h3>Create Reminder</h3>
+        <input type="text" id="reminderName" placeholder="Reminder name">
+        <input type="datetime-local" id="reminderDate">
+        <button onclick="addReminder()">Add Reminder</button>
+      </div>
+
+      <div class="sched-box">
+        <h3>Create Study Schedule</h3>
+        <input type="text" id="subject" placeholder="Subject">
+        <input type="datetime-local" id="studyTime">
+        <button onclick="addSchedule()">Add Schedule</button>
+      </div>
     </div>
 
-    <div class="sched-box">
-      <h3>Create Study Schedule</h3>
-      <input type="text" id="subject" placeholder="Subject">
-      <input type="datetime-local" id="studyTime">
-      <button onclick="addSchedule()">Add Schedule</button>
+    <div class="sched-directory">
+      <h3>View Your Entries</h3>
+      <button onclick="showPage('reminderListPage')">📅 Check Reminders</button>
+      <button onclick="showPage('scheduleListPage')">🕒 Check Schedules</button>
     </div>
-  </div>
 
-  <div class="sched-directory">
-    <h3>View Your Entries</h3>
-    <button onclick="showPage('reminderListPage')">📅 Check Reminders</button>
-    <button onclick="showPage('scheduleListPage')">🕒 Check Schedules</button>
-  </div>
+    <button class="backBtn" onclick="backToMenu()">Back to Menu</button>
+  </section>
 
-  <button class="backBtn" onclick="backToMenu()">Back to Menu</button>
-</section>
+  <!-- REMINDER LIST PAGE -->
+  <section id="reminderListPage" class="page hidden">
+    <h2>📝 Your Reminders</h2>
+    <ul id="reminderList"></ul>
+    <button class="backBtn" onclick="showPage('schedPage')">Back</button>
+  </section>
 
-<!-- REMINDER LIST PAGE -->
-<section id="reminderListPage" class="page">
-  <h2>📝 Your Reminders</h2>
-  <ul id="reminderList"></ul>
-  <button class="backBtn" onclick="showPage('schedPage')">Back</button>
-</section>
-
-<!-- SCHEDULE LIST PAGE -->
-<section id="scheduleListPage" class="page">
-  <h2>📚 Your Study Schedules</h2>
-  <ul id="scheduleList"></ul>
-  <button class="backBtn" onclick="showPage('schedPage')">Back</button>
-</section>
+  <!-- SCHEDULE LIST PAGE -->
+  <section id="scheduleListPage" class="page hidden">
+    <h2>📚 Your Study Schedules</h2>
+    <ul id="scheduleList"></ul>
+    <button class="backBtn" onclick="showPage('schedPage')">Back</button>
+  </section>
 
 </div>
 </body>
 </html>
+
