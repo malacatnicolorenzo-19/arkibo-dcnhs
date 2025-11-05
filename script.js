@@ -1,8 +1,3 @@
-// REGISTER SERVICE WORKER
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('service-worker.js');
-}
-
 // NAVIGATION
 function showPage(id) {
   document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
@@ -178,3 +173,4 @@ document.getElementById("reminderListPage").addEventListener("mouseenter", loadR
 document.getElementById("scheduleListPage").addEventListener("mouseenter", loadSchedules);
 // LOAD REMINDERS/SCHEDULES ON OPENING SCHED PAGE
 document.getElementById("schedPage").addEventListener("mouseenter", loadSched);
+
