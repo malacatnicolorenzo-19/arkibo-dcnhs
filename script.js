@@ -1,176 +1,224 @@
-// NAVIGATION
-function showPage(id) {
-  document.querySelectorAll('.page').forEach(p => p.classList.add('hidden'));
-  document.getElementById(id).classList.remove('hidden');
+/* GENERAL */
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  background: linear-gradient(to bottom right, #fefae0, #ffd6a5);
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
 }
 
-function gotoSignUp() {
-  showPage("signupPage");
+.page {
+  display: none;
+  width: 100%;
+  max-width: 420px;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
-function gotoLogin() {
-  showPage("loginPage");
+.page.active, .page:not(.hidden) {
+  display: block;
 }
 
-function showSignUpForm() {
-  document.getElementById("signupFormFields").classList.remove("hidden");
-  document.querySelector(".terms-box").classList.add("hidden");
+/* AUTH CONTAINER */
+.auth-container {
+  background: #ffffff;
+  border-radius: 25px;
+  padding: 20px;
+  margin-top: 50px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  text-align: center;
 }
 
-// SHOW EXTRA FIELD BASED ON ROLE
-function showExtraField() {
-  const role = document.getElementById("roleSelect").value;
-  const field = document.getElementById("extraField");
-  if (role === "student") {
-    field.placeholder = "Enter LRN";
-    field.classList.remove("hidden");
-  } else if (role === "teacher") {
-    field.placeholder = "Enter Employee Number";
-    field.classList.remove("hidden");
-  } else {
-    field.classList.add("hidden");
+.logo {
+  color: #1c8b4c;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+/* INPUTS & BUTTONS */
+input, select, button {
+  width: 90%;
+  margin: 10px auto;
+  padding: 12px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  display: block;
+  box-sizing: border-box;
+}
+
+button {
+  background: #1c8b4c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #2a9d5f;
+}
+
+.hidden {
+  display: none;
+}
+
+/* TERMS BOX */
+.terms-box {
+  max-height: 200px;
+  overflow-y: scroll;
+  border: 1px solid #ccc;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+.terms-buttons button {
+  margin: 5px;
+}
+
+.header {
+  text-align: center; /* center everything inside */
+  margin-bottom: 30px;
+}
+
+.menu-logo {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+
+.header-buttons button {
+  display: block;       /* stack vertically */
+  width: 80%;           /* same width as main menu buttons */
+  margin: 10px auto;    /* center horizontally */
+  font-size: 1.1rem;
+  border-radius: 20px;
+}
+
+
+/* PROFILE PAGE */
+.profile-box {
+  text-align: center;
+  margin-top: 70px;
+}
+
+/* WARNINGS */
+.warning {
+  background: #ffe0e0;
+  border-left: 5px solid #ff3b3b;
+  padding: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Kibo AI */
+.kibo-img {
+  width: 120px;
+  border-radius: 15px;
+  margin: 15px auto;
+  display: block;
+}
+
+/* Scheduler */
+.sched-section {
+  margin: 20px 0;
+}
+
+.sched-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sched-box {
+  background: #f7f7f7;
+  padding: 15px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.sched-directory button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 15px;
+  font-size: 1rem;
+}
+
+/* REMINDERS & SCHEDULE LIST */
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 10px 0;
+  padding: 10px;
+  background: #fff;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+ul li button {
+  width: auto;
+  padding: 5px 10px;
+  margin: 0;
+  border-radius: 10px;
+  background: #ff4d4d;
+}
+
+/* STUDY ARCHIVES BUTTONS */
+#archivesPage button {
+  width: 100%;
+  margin: 10px 0;
+  padding: 12px;
+  border-radius: 15px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+/* BACK BUTTON */
+.backBtn {
+  width: 90%;
+  margin: 20px auto;
+  padding: 12px;
+  border-radius: 20px;
+  background: #555;
+  color: #fff;
+}
+
+.backBtn:hover {
+  background: #333;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 480px) {
+  .auth-container, .page {
+    padding: 15px;
+  }
+
+  .menu-logo {
+    width: 80px;
+    height: 80px;
+  }
+
+  .logo {
+    font-size: 2.5rem;
+  }
+
+  input, select, button {
+    font-size: 0.95rem;
+  }
+
+  .sched-box {
+    padding: 10px;
   }
 }
-
-// LOCAL STORAGE USERS
-function signup() {
-  const name = signupName.value.trim();
-  const pass = signupPass.value.trim();
-  const role = roleSelect.value;
-  const extra = extraField.value.trim();
-
-  if(!name || !pass || !role || !extra) return alert("Fill all fields.");
-  
-  let users = JSON.parse(localStorage.getItem("arkiboUsers")||"[]");
-  if(users.find(u=>u.name===name)) return alert("User already exists.");
-  
-  users.push({name, pass, role, extra});
-  localStorage.setItem("arkiboUsers", JSON.stringify(users));
-  alert("Signup successful!");
-  gotoLogin();
-}
-
-function login() {
-  const name = loginName.value.trim();
-  const pass = loginPass.value.trim();
-  let users = JSON.parse(localStorage.getItem("arkiboUsers")||"[]");
-  const user = users.find(u=>u.name===name && u.pass===pass);
-  if(!user) return alert("Invalid credentials.");
-  
-  localStorage.setItem("arkiboCurrentUser", JSON.stringify(user));
-  showPage("menuPage");
-}
-
-// PROFILE
-function showProfile() {
-  const user = JSON.parse(localStorage.getItem("arkiboCurrentUser"));
-  profileName.innerText = "Name: "+user.name;
-  profileRole.innerText = "Role: "+user.role.toUpperCase();
-  showPage("profilePage");
-}
-
-function logout() {
-  localStorage.removeItem("arkiboCurrentUser");
-  gotoLogin();
-}
-
-// MAIN MENU NAVIGATION
-function goTo(section){
-  showPage(section+"Page");
-}
-
-function backToMenu(){
-  showPage("menuPage");
-}
-
-// STUDY SCHEDULER / REMINDERS with Directory + LocalStorage
-function loadReminders() {
-  const reminders = JSON.parse(localStorage.getItem("arkiboReminders") || "[]");
-  const list = document.getElementById("reminderList");
-  list.innerHTML = "";
-
-  if (reminders.length === 0) {
-    list.innerHTML = "<p>No reminders yet.</p>";
-    return;
-  }
-
-  reminders.forEach((r, i) => {
-    const li = document.createElement("li");
-    li.textContent = `${r.name} — ${new Date(r.date).toLocaleString()}`;
-    const del = document.createElement("button");
-    del.textContent = "🗑️";
-    del.onclick = () => deleteReminder(i);
-    li.appendChild(del);
-    list.appendChild(li);
-  });
-}
-
-function loadSchedules() {
-  const schedules = JSON.parse(localStorage.getItem("arkiboSchedules") || "[]");
-  const list = document.getElementById("scheduleList");
-  list.innerHTML = "";
-
-  if (schedules.length === 0) {
-    list.innerHTML = "<p>No study schedules yet.</p>";
-    return;
-  }
-
-  schedules.forEach((s, i) => {
-    const li = document.createElement("li");
-    li.textContent = `${s.subj} — ${new Date(s.time).toLocaleString()}`;
-    const del = document.createElement("button");
-    del.textContent = "🗑️";
-    del.onclick = () => deleteSchedule(i);
-    li.appendChild(del);
-    list.appendChild(li);
-  });
-}
-
-function addReminder() {
-  const name = reminderName.value.trim();
-  const date = reminderDate.value;
-  if (!name || !date) return alert("Please fill in all fields.");
-
-  let reminders = JSON.parse(localStorage.getItem("arkiboReminders") || "[]");
-  reminders.push({ name, date });
-  localStorage.setItem("arkiboReminders", JSON.stringify(reminders));
-
-  reminderName.value = "";
-  reminderDate.value = "";
-  alert("Reminder added successfully!");
-}
-
-function addSchedule() {
-  const subj = subject.value.trim();
-  const time = studyTime.value;
-  if (!subj || !time) return alert("Please fill in all fields.");
-
-  let schedules = JSON.parse(localStorage.getItem("arkiboSchedules") || "[]");
-  schedules.push({ subj, time });
-  localStorage.setItem("arkiboSchedules", JSON.stringify(schedules));
-
-  subject.value = "";
-  studyTime.value = "";
-  alert("Study schedule added successfully!");
-}
-
-function deleteReminder(index) {
-  let reminders = JSON.parse(localStorage.getItem("arkiboReminders") || "[]");
-  reminders.splice(index, 1);
-  localStorage.setItem("arkiboReminders", JSON.stringify(reminders));
-  loadReminders();
-}
-
-function deleteSchedule(index) {
-  let schedules = JSON.parse(localStorage.getItem("arkiboSchedules") || "[]");
-  schedules.splice(index, 1);
-  localStorage.setItem("arkiboSchedules", JSON.stringify(schedules));
-  loadSchedules();
-}
-
-// Load reminders/schedules when pages are opened
-document.getElementById("reminderListPage").addEventListener("mouseenter", loadReminders);
-document.getElementById("scheduleListPage").addEventListener("mouseenter", loadSchedules);
-// LOAD REMINDERS/SCHEDULES ON OPENING SCHED PAGE
-document.getElementById("schedPage").addEventListener("mouseenter", loadSched);
-
